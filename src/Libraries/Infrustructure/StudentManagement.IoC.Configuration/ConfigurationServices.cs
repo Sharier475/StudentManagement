@@ -8,22 +8,22 @@ using StudentManagement.Infrustructure;
 using StudentManagement.Repositories.Base;
 using StudentManagement.Repositories.Interface;
 
-namespace StudentManagement.IoC.Configuration
+namespace StudentManagement.IoC.Configuration;
+
+public static class ConfigurationServices
 {
-    public static class ConfigurationServices
+    public static IServiceCollection AddExtention(this IServiceCollection services,IConfiguration configuration)
     {
-        public static IServiceCollection AddExtention(this IServiceCollection services,IConfiguration configuration)
-        {
-            services.AddDbContext<StudentManagementDbContext>(options
-                => options.UseSqlServer(configuration.GetConnectionString("DbConnection")));
+        services.AddDbContext<StudentManagementDbContext>(options
+            => options.UseSqlServer(configuration.GetConnectionString("DbConnection")));
 
-            services.AddTransient<IStudentRepository,StudentRepository>();
-            services.AddAutoMapper(typeof(CommonMapper).Assembly);
-            services.AddMediatR(options => options.RegisterServicesFromAssemblies(typeof(ICore).Assembly));
-            return services;
-
-        }
-       
+        services.AddTransient<ITeacherRepository, TeacherRepository>();
+        services.AddTransient<IStudentRepository,StudentRepository>();
+        services.AddAutoMapper(typeof(CommonMapper).Assembly);
+        services.AddMediatR(options => options.RegisterServicesFromAssemblies(typeof(ICore).Assembly));
+        return services;
 
     }
+   
+
 }

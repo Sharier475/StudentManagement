@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentManagement.Infrustructure;
 
@@ -11,9 +12,11 @@ using StudentManagement.Infrustructure;
 namespace StudentManagement.Infrustructure.Migrations
 {
     [DbContext(typeof(StudentManagementDbContext))]
-    partial class StudentManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230816093450_updateTeacherandStudentRltship")]
+    partial class updateTeacherandStudentRltship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,104 +24,6 @@ namespace StudentManagement.Infrustructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("StudentManagement.Model.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset?>("LastModified")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryName = "Mobile",
-                            Created = new DateTimeOffset(new DateTime(2023, 8, 19, 16, 47, 47, 470, DateTimeKind.Unspecified).AddTicks(2838), new TimeSpan(0, 6, 0, 0, 0)),
-                            CreatedBy = "1",
-                            Status = 1
-                        });
-                });
-
-            modelBuilder.Entity("StudentManagement.Model.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset?>("LastModified")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductModel")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<double>("price")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Products", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            Created = new DateTimeOffset(new DateTime(2023, 8, 19, 16, 47, 47, 470, DateTimeKind.Unspecified).AddTicks(6768), new TimeSpan(0, 6, 0, 0, 0)),
-                            CreatedBy = "1",
-                            ProductModel = "5G",
-                            ProductName = "Samsung S23 Ulta",
-                            Status = 1,
-                            price = 1000.0
-                        });
-                });
 
             modelBuilder.Entity("StudentManagement.Model.Student", b =>
                 {
@@ -167,7 +72,7 @@ namespace StudentManagement.Infrustructure.Migrations
                         {
                             Id = 1,
                             AdmissionFee = 32000.0,
-                            Created = new DateTimeOffset(new DateTime(2023, 8, 19, 16, 47, 47, 473, DateTimeKind.Unspecified).AddTicks(7957), new TimeSpan(0, 6, 0, 0, 0)),
+                            Created = new DateTimeOffset(new DateTime(2023, 8, 16, 15, 34, 50, 849, DateTimeKind.Unspecified).AddTicks(7732), new TimeSpan(0, 6, 0, 0, 0)),
                             CreatedBy = "1",
                             Status = 1,
                             StudentName = "Sharier",
@@ -216,24 +121,13 @@ namespace StudentManagement.Infrustructure.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTimeOffset(new DateTime(2023, 8, 19, 16, 47, 47, 474, DateTimeKind.Unspecified).AddTicks(883), new TimeSpan(0, 6, 0, 0, 0)),
+                            Created = new DateTimeOffset(new DateTime(2023, 8, 16, 15, 34, 50, 849, DateTimeKind.Unspecified).AddTicks(9989), new TimeSpan(0, 6, 0, 0, 0)),
                             CreatedBy = "1",
                             Department = "IT",
                             Salary = 15000.0,
                             Status = 1,
                             TeacherName = "Dipon"
                         });
-                });
-
-            modelBuilder.Entity("StudentManagement.Model.Product", b =>
-                {
-                    b.HasOne("StudentManagement.Model.Category", "Category")
-                        .WithMany("products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("StudentManagement.Model.Student", b =>
@@ -245,11 +139,6 @@ namespace StudentManagement.Infrustructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Teacher");
-                });
-
-            modelBuilder.Entity("StudentManagement.Model.Category", b =>
-                {
-                    b.Navigation("products");
                 });
 
             modelBuilder.Entity("StudentManagement.Model.Teacher", b =>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentManagement.Infrustructure;
 
@@ -11,9 +12,11 @@ using StudentManagement.Infrustructure;
 namespace StudentManagement.Infrustructure.Migrations
 {
     [DbContext(typeof(StudentManagementDbContext))]
-    partial class StudentManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230816111404_UpdateRelationBetweenProductAndCategoryTable")]
+    partial class UpdateRelationBetweenProductAndCategoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,7 +61,7 @@ namespace StudentManagement.Infrustructure.Migrations
                         {
                             Id = 1,
                             CategoryName = "Mobile",
-                            Created = new DateTimeOffset(new DateTime(2023, 8, 19, 16, 47, 47, 470, DateTimeKind.Unspecified).AddTicks(2838), new TimeSpan(0, 6, 0, 0, 0)),
+                            Created = new DateTimeOffset(new DateTime(2023, 8, 16, 17, 14, 4, 473, DateTimeKind.Unspecified).AddTicks(6854), new TimeSpan(0, 6, 0, 0, 0)),
                             CreatedBy = "1",
                             Status = 1
                         });
@@ -111,7 +114,7 @@ namespace StudentManagement.Infrustructure.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            Created = new DateTimeOffset(new DateTime(2023, 8, 19, 16, 47, 47, 470, DateTimeKind.Unspecified).AddTicks(6768), new TimeSpan(0, 6, 0, 0, 0)),
+                            Created = new DateTimeOffset(new DateTime(2023, 8, 16, 17, 14, 4, 473, DateTimeKind.Unspecified).AddTicks(9791), new TimeSpan(0, 6, 0, 0, 0)),
                             CreatedBy = "1",
                             ProductModel = "5G",
                             ProductName = "Samsung S23 Ulta",
@@ -167,7 +170,7 @@ namespace StudentManagement.Infrustructure.Migrations
                         {
                             Id = 1,
                             AdmissionFee = 32000.0,
-                            Created = new DateTimeOffset(new DateTime(2023, 8, 19, 16, 47, 47, 473, DateTimeKind.Unspecified).AddTicks(7957), new TimeSpan(0, 6, 0, 0, 0)),
+                            Created = new DateTimeOffset(new DateTime(2023, 8, 16, 17, 14, 4, 477, DateTimeKind.Unspecified).AddTicks(5547), new TimeSpan(0, 6, 0, 0, 0)),
                             CreatedBy = "1",
                             Status = 1,
                             StudentName = "Sharier",
@@ -216,7 +219,7 @@ namespace StudentManagement.Infrustructure.Migrations
                         new
                         {
                             Id = 1,
-                            Created = new DateTimeOffset(new DateTime(2023, 8, 19, 16, 47, 47, 474, DateTimeKind.Unspecified).AddTicks(883), new TimeSpan(0, 6, 0, 0, 0)),
+                            Created = new DateTimeOffset(new DateTime(2023, 8, 16, 17, 14, 4, 477, DateTimeKind.Unspecified).AddTicks(8346), new TimeSpan(0, 6, 0, 0, 0)),
                             CreatedBy = "1",
                             Department = "IT",
                             Salary = 15000.0,

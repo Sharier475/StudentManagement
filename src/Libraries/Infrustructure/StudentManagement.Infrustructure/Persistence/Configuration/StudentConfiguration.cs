@@ -11,18 +11,18 @@ internal class StudentConfiguration : IEntityTypeConfiguration<Student>
     {
         builder.ToTable("Students");
         builder.HasKey(x => x.Id);
+        builder.HasOne(x => x.Teacher).WithMany(x => x.Students).HasForeignKey(x => x.TeacherId).IsRequired(true);
         builder.HasData(new
         {
             Id = 1,
             StudentName ="Sharier",
             AdmissionFee = 32000.00,
             CourseName = ".NET",
+            TeacherId=1,
             CategoryId = 1,
             Created = DateTimeOffset.Now,
             CreatedBy = "1",
             Status = EntityStatus.Created
-
-
 
         });
     }

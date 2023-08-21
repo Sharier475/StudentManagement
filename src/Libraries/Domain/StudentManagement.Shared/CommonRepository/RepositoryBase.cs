@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using StudentManagement.Infrustructure;
-using StudentManagement.Infrustructure.CommonRepository;
 using StudentManagement.Shared.Common;
+using StudentManagement.Shared.CommonRepository;
 
 public class RepositoryBase<TEntity, IModel, T> : IRepository<TEntity, IModel, T>
     where TEntity : class, IEntity<T>, new()
@@ -11,9 +10,9 @@ public class RepositoryBase<TEntity, IModel, T> : IRepository<TEntity, IModel, T
 {
 
     protected readonly IMapper _mapper;
-    private readonly StudentManagementDbContext _dbContext;
+    private readonly DbContext _dbContext;
 
-    public RepositoryBase(IMapper mapper, StudentManagementDbContext dbContext)
+    public RepositoryBase(IMapper mapper, DbContext dbContext)
     {
         _mapper = mapper;
         _dbContext = dbContext;

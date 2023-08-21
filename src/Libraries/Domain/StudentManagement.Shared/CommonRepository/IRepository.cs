@@ -1,8 +1,8 @@
 ﻿using StudentManagement.Shared.Common;
 
-namespace StudentManagement.Infrustructure.CommonRepository;
+namespace StudentManagement.Shared.CommonRepository;
 
-public interface IRepository< TEntity, IModel, T>
+public interface IRepository<TEntity, IModel, T>
      where TEntity : class, IEntity<T>, new()
     where IModel : class, IVm<T>, new()
     where T : IEquatable<T>

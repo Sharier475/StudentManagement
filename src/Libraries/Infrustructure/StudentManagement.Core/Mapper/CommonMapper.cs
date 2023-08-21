@@ -8,6 +8,8 @@ namespace StudentManagement.Core.Mapper
         public CommonMapper() 
         {
             CreateMap<Services.Model.VmStudent,Model.Student>().ReverseMap();
+            CreateMap<Services.Model.VmTeacher, Model.Teacher>().ReverseMap();
+
 
         }
     }
